@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Quiz project | With Javascript</title>
+    <style>
+        body
+        {
+            margin: 0;
+            background: #333;
+            display: grid;
+            grid-template-columns: 50% 50%;
+            width: 100%;
+            grid-gap: 3px;
+        }
+        #quearea
+        {
+            background: #999;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+        #resultarea
+        {
+            background-color: #666;
+          color: #fff;
+        }
+        #getResult
+        {
+          margin: 10px;
+          border-radius: 10%;
+          padding: 10px 10px;
+          border: none;
+        }
+        #correct
+        {
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="quearea">
+        <form id="myform">
+    <div id="que_1">
+    <h3>What is the capital of srilanka ?</h3>
+    <input type="text" name="ans1">
+    </div>
+    <div id="que_2">
+        <h3>Who is the creater of C language ?</h3>
+        <input type="radio" value="Dennis ritchie" name="radioAns1"><span>Dennis ritchie</span><br>
+        <input type="radio" value="Bjarne Stroustrup" name="radioAns1"><span>Bjarne Stroustrup</span>
+    </div>
+    <div id="que_3">
+        <h3>Who is the founder of facebook ?</h3>
+        <input type="radio" value="Mark Zuckerberg" name="radioAns2"><span>Mark Zuckerberg</span><br>
+        <input type="radio" value="Bill Gates" name="radioAns2"><span>Bill Gates</span> 
+    </div>
+</form>
+     <button id="getResult">Get Your Result</button>
+   </div>
+
+    <div id="resultarea">
+        <h3 id="resulthead"></h3>
+        <h3 id="correct">Correct Answer: <span id="getcorrect"></span> <span>/3</span></h3>
+    </div>
+    <script>
+        var show = document.querySelector('#correct');
+        var correct = 0;
+         var resultbtn = document.querySelector('#getResult');
+        resultbtn.addEventListener('click',() =>{
+
+         var myform = document.getElementById('myform');
+            var first = myform.ans1.value;
+            var second = myform.radioAns1.value;
+            var third = myform.radioAns2.value;
+              
+              if(first== '' || second=='' || third == '')
+              {
+                  alert('Input cant be empty');
+              }
+              else
+              {
+                  var result = document.querySelector('#resulthead');
+                  var correctnum = document.querySelector('#getcorrect');
+                  if(first == 'colombo')
+                  {
+                   correct += 1;
+                  }
+                  if(second == 'Dennis ritchie')
+                  {
+                      correct += 1;
+                  }
+                  if(third== 'Mark Zuckerberg')
+                  {
+                      correct += 1;
+                  }
+                  myform.ans1.value = '';
+                  myform.radioAns1.value = '';
+                  myform.radioAns2.value = '';
+                  correctnum.innerHTML = correct;
+                  show.style.opacity = '1';
+                   if(correct == 0)
+                   {
+                    result.innerHTML = 'Oops! Try HARD';
+                   }
+                   else if(correct == 1)
+                   {
+                    result.innerHTML = 'Good job';
+                   }
+                   else if(correct == 2)
+                   {
+                    result.innerHTML = 'Nice';
+                   }
+                   else
+                   {
+                       result.innerHTML= 'Exellent';
+                   }
+              }
+                         
+        });
+    
+    </script>
+</body>
+</html>
